@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mere Dil Se Ek Baat... Sweetu ❤️</title>
+    <style>
+        /* --- Google Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap');
+
+        /* --- Basic Styling --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            color: #444;
+            overflow-x: hidden;
+        }
+
+        /* --- Floating Hearts Animation --- */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Hero Section (Top Section) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=2025&auto=format&fit=crop') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, #ff6b9d, #ffc3e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        
+        .scroll-down {
+            margin-top: 50px;
+            font-size: 1rem;
+            animation: bounce 2s infinite;
+            color: #ffc3e0;
+        }
+
+        /* --- Main Content Sections --- */
+        .content-section {
+            padding: 80px 15%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-section h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d13e61;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* --- Letter Section --- */
+        .letter {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            border: 2px solid #ffc3e0;
+            position: relative;
+        }
+
+        .letter::before {
+            content: "💌";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #ff6b9d;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+        
+        .letter .signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #d13e61;
+            font-weight: 600;
+        }
+
+        /* --- Video Section --- */
+        .video-container {
+            margin: 40px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 480px;
+            border: none;
+            border-radius: 15px;
+            display: block;
+        }
+
+        /* --- Reasons Section --- */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .reason-card:hover::before {
+            left: 100%;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(209, 62, 97, 0.3);
+            border-color: #ff6b9d;
+        }
+
+        .reason-card h3 {
+            color: #d13e61;
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+
+        .reason-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* --- Cute Elements --- */
+        .cute-emoji {
+            font-size: 2rem;
+            margin: 0 10px;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            75% { transform: rotate(-5deg); }
+        }
+
+        /* --- Final Message Section --- */
+        #final-message {
+            background: linear-gradient(135deg, #d13e61 0%, #ff6b9d 100%);
+            color: white;
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        #final-message h2 {
+            color: white;
+        }
+
+        .forgive-btn {
+            padding: 18px 40px;
+            border: 3px solid white;
+            background: transparent;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .forgive-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .forgive-btn:hover::before {
+            left: 0;
+        }
+
+        .forgive-btn:hover {
+            color: #d13e61;
+            transform: scale(1.05);
+        }
+
+        /* --- Special Message Box --- */
+        .special-message {
+            background: linear-gradient(135deg, #ffc3e0 0%, #ff9a9e 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            border: 3px solid #ff6b9d;
+            position: relative;
+        }
+
+        .special-message::before {
+            content: "💕";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+
+        /* --- Teddy Bear Animation Styles --- */
+        .teddy-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .teddy-scene {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teddy-boy, .teddy-girl {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .teddy-body {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .teddy-body:hover {
+            transform: scale(1.1);
+        }
+
+        .teddy-speech {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 1rem;
+            max-width: 200px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .teddy-speech.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .teddy-speech::before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+
+        .teddy-btn {
+            background: linear-gradient(135deg, #ff6b9d, #ffc3e0);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .teddy-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
+        .teddy-crying {
+            animation: cry 1s ease-in-out infinite;
+        }
+
+        .teddy-happy {
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        @keyframes cry {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .teddy-moving {
+            animation: moveAround 2s ease-in-out;
+        }
+
+        @keyframes moveAround {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(20px); }
+            50% { transform: translateX(-10px); }
+            75% { transform: translateX(15px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .content-section { padding: 60px 5%; }
+            .content-section h2 { font-size: 2.8rem; }
+            
+            .video-container {
+                max-width: 350px;
+                margin: 30px auto;
+                padding: 15px;
+            }
+            
+            .video-container iframe { 
+                height: 400px; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1rem; }
+            .content-section { padding: 40px 3%; }
+            .content-section h2 { font-size: 2.2rem; }
+            
+            .video-container {
+                max-width: 300px;
+                margin: 20px auto;
+                padding: 10px;
+            }
+            
+            .video-container iframe { 
+                height: 350px; 
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="hearts"></div>
+
+    <section class="hero">
+        <h1>Dear Diksha (Sweetu) 💕</h1>
+        <p>Main jaanta hoon, mujhse galti hui hai... <span class="cute-emoji">😔</span></p>
+        <div class="scroll-down">Neeche Scroll Karein &darr;</div>
+    </section>
+
+    <section class="content-section" id="letter-section">
+        <h2>Mera Ek Chhota Sa Letter <span class="cute-emoji">💌</span></h2>
+        <div class="letter">
+            <p>
+                My Dearest Sweetu (Diksha),
+                <br><br>
+                Mujhe pata hai ki sirf 'Sorry' kehna kaafi nahi hai. Maine majak mein "moti" kaha tha aur maine aapko hurt kiya. Maine bina soche samjhe bol diya aur mujhe is baat ka ehsaas hai ki mere shabdon ne aapko kitna dukh pahunchaya hai. Main apni galti dil se maanta hoon. <span class="cute-emoji">💔</span>
+                <br><br>
+                Sweetu, main aapse ek sawaal puchna chahta hoon... Kya main aapki life mein hoon ya nahi? Kya mere baat na karne se aapko koi fark padta hai? Agar aapko lagta hai ki main aapki life mein koi importance nahi rakhta, toh main samajh jaunga. Lekin agar main aapke liye important hoon, toh please mujhe maaf kar do. <span class="cute-emoji">😢</span>
+                <br><br>
+                Sach yeh hai ki aap jaisi ho, mere liye duniya ki sabse khoobsurat insaan ho. Aapki khoobsurti sirf aapke chehre ya body mein nahi, balki aapke dil mein, aapki hasi mein aur aapke saath mein hai. Main aapko khona nahi chahta. Yeh website bas ek choti si koshish hai yeh dikhane ki, ki aap mere liye kya ho. <span class="cute-emoji">✨</span>
+                <br><br>
+                Umeed hai aap mujhe maaf kar dogi, Sweetu. <span class="cute-emoji">🥺</span>
+            </p>
+            <div class="signature">
+                Tumhara,
+                <br>
+                [Yahan Apna Naam Likho] <span class="cute-emoji">❤️</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="content-section" id="video-section">
+        <h2>Ek Chhota Sa Video <span class="cute-emoji">🎥</span></h2>
+        <div class="video-container">
+            <iframe src="https://www.instagram.com/p/CImfUvfjcn8/embed" width="100%" height="500" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+        </div>
+        <p style="font-style: italic; color: #666; margin-top: 20px;">Yeh video dekh kar smile aaye, bas itna hi chahta hoon main! 😊</p>
+    </section>
+
+    <!-- Teddy Bear Animation Section -->
+    <section class="content-section" id="teddy-section">
+        <h2>Teddy Bears ki Kahani <span class="cute-emoji">🧸</span></h2>
+        <div class="teddy-container">
+            <div class="teddy-scene">
+                <div class="teddy-boy" id="teddyBoy">
+                    <div class="teddy-body">🧸</div>
+                    <div class="teddy-speech" id="boySpeech">Hi Sweetu! 👋</div>
+                </div>
+                <div class="teddy-girl" id="teddyGirl">
+                    <div class="teddy-body">🧸</div>
+                    <div class="teddy-speech" id="girlSpeech">Hmm... 😤</div>
+                </div>
+            </div>
+            <button class="teddy-btn" onclick="startTeddyStory()">Teddy Story Start Karo! 🎬</button>
+        </div>
+    </section>
+    
+    <section class="content-section" id="reasons-section">
+        <h2>Kuch Wajah... Ki Aap Itni Special Kyun Ho <span class="cute-emoji">🌟</span></h2>
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <h3>Aapki Hasi <span class="cute-emoji">😊</span></h3>
+                <p>Aapki hasi sun kar main khush ho jaata hoon.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Aapka Nature <span class="cute-emoji">💝</span></h3>
+                <p>Aap bahut sweet ho aur mere liye care karti ho.</p>
+            </div>
+            <div class="reason-card">
+                <h3>Aap Aap Ho <span class="cute-emoji">💖</span></h3>
+                <p>Main aapko exactly waisi hi chahta hoon jaisi aap ho.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Message -->
+    <section class="content-section">
+        <div class="special-message">
+            <h3 style="color: #d13e61; margin-top: 0;">Ek Special Message Sweetu ke liye <span class="cute-emoji">💕</span></h3>
+            <p style="font-size: 1.1rem; line-height: 1.6;">
+                Diksha, main jaanta hoon ki maine "moti" kaha tha aur aapko hurt kiya. Main chahta hoon ki aap jaane ki aap mere liye kitni important ho. 
+                Aapki har smile, har laugh, har moment mere liye precious hai. Main aapko khona nahi chahta, Sweetu. 
+                <br><br>
+                <strong>Lekin main aapse puchna chahta hoon - Kya main aapki life mein hoon ya nahi? Kya mere baat na karne se aapko koi fark padta hai?</strong> 
+                <br><br>
+                Agar aapko lagta hai ki main aapke liye important nahi hoon, toh main samajh jaunga. Lekin agar main aapke liye important hoon, toh please mujhe maaf kar do. 
+                Main promise karta hoon ki aage se kabhi aisi galti nahi karunga. <span class="cute-emoji">🤗</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section" id="final-message">
+        <h2>Ek Aakhri Sawaal... <span class="cute-emoji">🥺</span></h2>
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">Main waada karta hoon ki aage se kabhi aisi galti nahi karunga, Sweetu.</p>
+        <button class="forgive-btn" onclick="revealMessage()">Please Maaf Kar Do? <span class="cute-emoji">🙏</span></button>
+    </section>
+
+    <script>
+        // --- Floating Hearts Animation ---
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts every 300ms
+        setInterval(createHeart, 300);
+
+        // --- Scroll par sections ko fade in karne ke liye ---
+        const sections = document.querySelectorAll('.content-section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Button par click karke special message dikhane ke liye ---
+        function revealMessage() {
+            const messages = [
+                "Thank you Sweetu! ❤️ Please call me when you can.",
+                "I love you Diksha! 💕 You mean everything to me.",
+                "You're the best thing that ever happened to me! 🌟",
+                "I promise to be better for you, always! 💖"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            // Create a beautiful alert-like popup
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(135deg, #ff6b9d, #ffc3e0);
+                color: white;
+                padding: 30px;
+                border-radius: 20px;
+                font-size: 1.2rem;
+                text-align: center;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1000;
+                animation: popupIn 0.5s ease-out;
+            `;
+            popup.innerHTML = `
+                <div style="font-size: 2rem; margin-bottom: 15px;">💕</div>
+                <div>${randomMessage}</div>
+                <button onclick="this.parentElement.remove()" style="
+                    margin-top: 20px;
+                    padding: 10px 20px;
+                    background: white;
+                    color: #ff6b9d;
+                    border: none;
+                    border-radius: 25px;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">Close</button>
+            `;
+            
+            document.body.appendChild(popup);
+            
+            // Add popup animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes popupIn {
+                    from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+                    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // --- Add some sparkle effects on click ---
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('forgive-btn')) {
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        createHeart();
+                    }, i * 100);
+                }
+            }
+        });
+
+        // --- Teddy Bear Story Function ---
+        function startTeddyStory() {
+            const boyTeddy = document.getElementById('teddyBoy');
+            const girlTeddy = document.getElementById('teddyGirl');
+            const boySpeech = document.getElementById('boySpeech');
+            const girlSpeech = document.getElementById('girlSpeech');
+            const button = document.querySelector('.teddy-btn');
+            
+            // Hide button
+            button.style.display = 'none';
+            
+            // Story sequence
+            const story = [
+                { speaker: 'boy', text: 'Hi Sweetu! 👋', delay: 1000 },
+                { speaker: 'girl', text: 'Hmm... 😤', delay: 2000 },
+                { speaker: 'boy', text: 'Main sorry bolna chahta hoon... 😔', delay: 3000 },
+                { speaker: 'girl', text: 'Kya sorry? 😠', delay: 4000 },
+                { speaker: 'boy', text: 'Maine jo kaha tha woh galat tha! 😭', delay: 5000 },
+                { speaker: 'girl', text: 'Haan, bahut hurt hui main! 😢', delay: 6000 },
+                { speaker: 'boy', text: 'Please maaf kar do Sweetu! 🙏', delay: 7000 },
+                { speaker: 'boy', text: 'Main ro raha hoon... 😭😭😭', delay: 8000 },
+                { speaker: 'girl', text: 'Achha... okay... 😊', delay: 9000 },
+                { speaker: 'boy', text: 'Really? Thank you! 😍', delay: 10000 },
+                { speaker: 'girl', text: 'Lekin promise karo! 🤝', delay: 11000 },
+                { speaker: 'boy', text: 'Promise! I love you! 💕', delay: 12000 },
+                { speaker: 'girl', text: 'I love you too! 💖', delay: 13000 }
+            ];
+            
+            let currentIndex = 0;
+            
+            function showNextMessage() {
+                if (currentIndex >= story.length) {
+                    // Story complete - show happy ending
+                    boyTeddy.querySelector('.teddy-body').innerHTML = '🧸';
+                    girlTeddy.querySelector('.teddy-body').innerHTML = '🧸';
+                    boyTeddy.classList.add('teddy-happy');
+                    girlTeddy.classList.add('teddy-happy');
+                    button.style.display = 'block';
+                    button.textContent = 'Story Complete! 💕';
+                    return;
+                }
+                
+                const currentStory = story[currentIndex];
+                const speechElement = currentStory.speaker === 'boy' ? boySpeech : girlSpeech;
+                const teddyElement = currentStory.speaker === 'boy' ? boyTeddy : girlTeddy;
+                
+                // Clear previous speech
+                boySpeech.classList.remove('show');
+                girlSpeech.classList.remove('show');
+                
+                // Add crying animation for boy when he's apologizing
+                if (currentStory.text.includes('ro raha') || currentStory.text.includes('sorry')) {
+                    boyTeddy.classList.add('teddy-crying');
+                } else {
+                    boyTeddy.classList.remove('teddy-crying');
+                }
+                
+                // Add moving animation
+                teddyElement.classList.add('teddy-moving');
+                setTimeout(() => {
+                    teddyElement.classList.remove('teddy-moving');
+                }, 2000);
+                
+                // Show new speech
+                setTimeout(() => {
+                    speechElement.textContent = currentStory.text;
+                    speechElement.classList.add('show');
+                }, 500);
+                
+                currentIndex++;
+                setTimeout(showNextMessage, currentStory.delay);
+            }
+            
+            // Start the story
+            showNextMessage();
+        }
+    </script>
+
+</body>
+</html>
